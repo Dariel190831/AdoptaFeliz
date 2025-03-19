@@ -10,7 +10,7 @@ const translations = {
 }
 
 const i18n = new I18n(translations);
-i18n.defaultLocale = "en";
+i18n.defaultLocale = "fr";
 i18n.enableFallback = true;
 
 type Language = "en" | "es" | "fr" | "de";

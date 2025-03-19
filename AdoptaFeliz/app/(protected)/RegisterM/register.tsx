@@ -3,11 +3,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
 const register = [
-  { id: "1", nombre: "Zarra", raza: "Pastor Aleman", edad: "2 años" ,categoria: "Cachorro", cantidad: 2 },
-
+  { id: "1", nombre: "Hulk", raza: "Pastor Aleman", edad: "2 años" ,categoria: "Cachorro", cantidad: 1 },
+  { id: "2", nombre: "Jimmy", raza: "Pastor Aleman", edad: "2 años" ,categoria: "Perro Grande", cantidad: 1 },
 ];
 
-export default function RegisterScreen() {
+export default function RegisterMScreen() {
       const router = useRouter();
     
   return (
@@ -16,7 +16,7 @@ export default function RegisterScreen() {
         <Ionicons name="cube-outline" size={32} color="#2D2E32" />
         <Text style={styles.title}>Registro de Mascotas</Text>
       </View>
-      <TouchableOpacity style={styles.addButton} onPress={() => router.push("/Register/register")}>
+      <TouchableOpacity style={styles.addButton} onPress={() => router.push("/RegisterM/register")}>
   <Text style={styles.addButtonText}>Agregar Mascota</Text>
 </TouchableOpacity>
 

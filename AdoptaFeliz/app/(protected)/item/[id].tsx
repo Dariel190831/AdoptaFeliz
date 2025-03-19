@@ -7,11 +7,11 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 export default function ArticuloScreen(){
 
     const router = useRouter();
-    const {id, nombre, categoria, cantidad} = useLocalSearchParams();
+    const {id, nombre, raza, edad,categoria, cantidad} = useLocalSearchParams();
 
     return (
         <View style={styles.container}>
-          <ArticuloCard nombre={nombre as string} categoria={categoria as string} stock={Number(cantidad)} />
+          <ArticuloCard nombre={nombre as string} raza={raza as string} edad={edad as string} categoria={categoria as string} stock={Number(cantidad)}  />
     
           <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
             <Ionicons name="arrow-back-outline" size={24} color="white" />

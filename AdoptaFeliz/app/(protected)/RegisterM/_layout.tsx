@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function RegistroLayout() {
+export default function RegistroMLayout() {
   return (
     <Tabs
       screenOptions={{
@@ -19,7 +19,7 @@ export default function RegistroLayout() {
       />
 
       <Tabs.Screen
-        name="addRegister"
+        name="addRegisterM"
         options={{
           title: "Añadir Mascota",
           tabBarIcon: ({ color, size }) => <Ionicons name="add-circle-outline" size={size} color={color} />,

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert, ScrollView } from "react-native";
+import { Text, View, TextInput, TouchableOpacity, Image, StyleSheet, Alert, ScrollView } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 
-export default function AddRegisterScreen() {
+export default function AddRegisterMScreen() {
   const router = useRouter();
 
-  const [register, setRegister] = useState({
+  const [register, setRegisterM] = useState({
     name: "",
     race: "",
     age: "",
@@ -16,7 +16,7 @@ export default function AddRegisterScreen() {
   });
 
   const handleChange = (field: string, value: string) => {
-    setRegister((prev) => ({ ...prev, [field]: value }));
+    setRegisterM((prev) => ({ ...prev, [field]: value }));
   };
 
   const selectImage = async () => {
@@ -58,7 +58,7 @@ export default function AddRegisterScreen() {
       return;
     }
 
-    console.log("Mascota guardado:", register);
+    console.log("Mascota guardada:", register);
     Alert.alert("Éxito", "Los datos de la mascota se han registrado correctamente.");
     router.back();
   };
@@ -68,8 +68,8 @@ export default function AddRegisterScreen() {
       <Text style={styles.title}>Registro de Mascotas</Text>
 
       <TextInput style={styles.input} placeholder="Nombre de la Mascota" value={register.name} onChangeText={(text) => handleChange("name", text)} />
-      <TextInput style={styles.input} placeholder="Raza" value={register.name} onChangeText={(text) => handleChange("race", text)} />
-      <TextInput style={styles.input} placeholder="Edad" value={register.name} onChangeText={(text) => handleChange("age", text)} />
+      <TextInput style={styles.input} placeholder="Raza" value={register.race} onChangeText={(text) => handleChange("race", text)} />
+      <TextInput style={styles.input} placeholder="Edad" value={register.age} onChangeText={(text) => handleChange("age", text)} />
       <TextInput style={styles.input} placeholder="Categoría" value={register.category} onChangeText={(text) => handleChange("category", text)} />
       <TextInput style={styles.input} placeholder="Cantidad" value={register.quantity} onChangeText={(text) => handleChange("quantity", text)} keyboardType="numeric" />
 
