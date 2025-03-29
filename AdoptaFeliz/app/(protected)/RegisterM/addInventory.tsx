@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text, View, TextInput, TouchableOpacity, Image, StyleSheet, Alert, ScrollView } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
+import { RegistrarMascota } from "@/config/apifuncion";
 
 export default function AddRegisterMScreen() {
   const router = useRouter();
@@ -11,9 +12,30 @@ export default function AddRegisterMScreen() {
     race: "",
     age: "",
     category: "",
-    quantity: "",
     image: null as string | null,
   });
+
+  const registrarButtomn = async () => {
+    const nombre = register.name;
+    const raza = register.race;
+    const edad = register.age;
+    const categoria = register.category;
+    
+    try {
+      const data = await RegistrarMascota(
+        nombre, raza, edad, categoria
+      );
+      alert("Mascota registrada con éxito");
+      router.back();
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
+      Alert.alert("Error", "No se pudo registrar la mascota. Intente nuevamente.");
+    }
+  }
 
   const handleChange = (field: string, value: string) => {
     setRegisterM((prev) => ({ ...prev, [field]: value }));
@@ -52,15 +74,13 @@ export default function AddRegisterMScreen() {
   };
 
   const saveProduct = () => {
-    const { name, race, age, category, quantity, image } = register;
-    if (!name || !race || !age ||!category || !quantity || !image) {
+    const { name, race, age, category, image } = register;
+    if (!name || !race || !age ||!category || !image) {
       Alert.alert("Error", "Todos los campos son obligatorios.");
       return;
     }
 
-    console.log("Mascota guardada:", register);
-    Alert.alert("Éxito", "Los datos de la mascota se han registrado correctamente.");
-    router.back();
+  router.back();
   };
 
   return (
@@ -71,7 +91,6 @@ export default function AddRegisterMScreen() {
       <TextInput style={styles.input} placeholder="Raza" value={register.race} onChangeText={(text) => handleChange("race", text)} />
       <TextInput style={styles.input} placeholder="Edad" value={register.age} onChangeText={(text) => handleChange("age", text)} />
       <TextInput style={styles.input} placeholder="Categoría" value={register.category} onChangeText={(text) => handleChange("category", text)} />
-      <TextInput style={styles.input} placeholder="Cantidad" value={register.quantity} onChangeText={(text) => handleChange("quantity", text)} keyboardType="numeric" />
 
       {register.image && <Image source={{ uri: register.image }} style={styles.image} />}
 
@@ -83,7 +102,7 @@ export default function AddRegisterMScreen() {
         <Text style={styles.buttonText}>Tomar Foto</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.buttonSave} onPress={saveProduct}>
+      <TouchableOpacity style={styles.buttonSave} onPress={registrarButtomn}>
         <Text style={styles.buttonText}>Guardar Mascota</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -99,4 +118,8 @@ const styles = StyleSheet.create({
   buttonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
   image: { width: 200, height: 200, borderRadius: 10, marginVertical: 10 },
 });
+
+function setError(message:string) {
+  throw new Error("Funcion no implementada.");
+}
 

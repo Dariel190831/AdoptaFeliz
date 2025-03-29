@@ -1,6 +1,7 @@
 import { FlatList, TouchableOpacity, View, Text, StyleSheet, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { RegistrarMascota } from "@/config/apifuncion";
 
 const register = [
   { id: "1", nombre: "Hulk", raza: "Pastor Aleman", edad: "2 años" ,categoria: "Cachorro", cantidad: 1 },
